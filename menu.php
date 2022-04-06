@@ -1,3 +1,8 @@
+<?php 
+	include('/account/functions.php');
+	include('connection.php');
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -16,10 +21,6 @@
 </head>
 
 <body>
-    <?php 
-        include('includes/header.php');
-    ?>
-
     <div class="sample-section-wrap">
         <div class="sample-section">
             <div class="content" id="menu">
@@ -30,193 +31,18 @@
                 <div class="padding"></div>
 
                 <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for pizzas..">
-                <h3>All Pizzas</h3>
+                <h2>All Pizzas</h3>
 
-                <!-- Modal -->
-                <div id="modal" class="modal">
-                    <div class="pizzaModal">
-                        <img class="allePizzas" src="" alt="pizza">
-                        <h3 class="prijs">prijs: $69.69</h3>
-                    </div>
-                </div>
+                <div class="input-group">
 
-                <ul id="myUL">
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv">
-                                <a style="" class="pizza_naam">Margherita<img class="pizzas"
-                                        src="assets/img/okpizza.png" alt="pizza">Klik voor de details...</a>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv">
-                                <a style="" class="pizza_naam">Kaas<img class="pizzas"
-                                        src="assets/img/pizza-1.png" alt="pizza">Klik voor de details...</a>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv">
-                                <a style="" class="pizza_naam">Kaas<img class="pizzas"
-                                        src="assets/img/pizza-1.png" alt="pizza">Klik voor de details...</a>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv">
-                                <a style="" class="pizza_naam">Kaas<img class="pizzas"
-                                        src="assets/img/pizza-1.png" alt="pizza">Klik voor de details...</a>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv">
-                                <a style="" class="pizza_naam">Kaas<img class="pizzas"
-                                        src="assets/img/pizza-1.png" alt="pizza">Klik voor de details...</a>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv">
-                                <a style="" class="pizza_naam">Kaas<img class="pizzas"
-                                        src="assets/img/pizza-1.png" alt="pizza">Klik voor de details...</a>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv">
-                                <a style="" class="pizza_naam">Kaas<img class="pizzas"
-                                        src="assets/img/pizza-1.png" alt="pizza">Klik voor de details...</a>
-                            </div>
-                        </li>
-                    </div>
+			<?php
+				$result=$conn->prepare ("SELECT pizza FROM `menu` ORDER BY `menu`.`pizza` ASC");
+				$result->execute();
+				foreach($result as $row){
+				echo "<h3 value='".$row['pizza']."'".">".$row['pizza']."</option>";
+				}
+			?>			
 
-                    <!-- <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv"><a onclick="document.getElementById('id01').style.display='block'"
-                                    style="" class="pizza_naam">Pepperoni<img class="pizzas"
-                                        src="assets/img/okpizza.png" alt="pizza">Klik voor de details...</a></div>
-                            <div id="id02" class="modal">
-
-                                <form class="modal-content animate" action="order.php" method="post">
-
-                                    <img class="allePizzas" src="assets/img/pizza-2.png" alt="Pepperoni">
-
-                                </form>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv"><a onclick="document.getElementById('id01').style.display='block'"
-                                    style="" class="pizza_naam">Tonno<img class="pizzas" src="assets/img/okpizza.png"
-                                        alt="pizza">Klik voor de details...</a></div>
-                            <div id="id01" class="modal">
-
-                                <form class="modal-content animate" action="order.php" method="post">
-
-                                    <img class="allePizzas" src="assets/img/pizza-1.png" alt="ok">
-
-                                </form>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv"><a onclick="document.getElementById('id01').style.display='block'"
-                                    style="" class="pizza_naam">4 Cheese<img class="pizzas" src="assets/img/okpizza.png"
-                                        alt="pizza">Klik voor de details...</a></div>
-                            <div id="id01" class="modal">
-
-                                <form class="modal-content animate" action="order.php" method="post">
-
-                                    <img class="allePizzas" src="assets/img/pizza-1.png" alt="ok">
-
-                                </form>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv"><a onclick="document.getElementById('id01').style.display='block'"
-                                    style="" class="pizza_naam">Hete Kip<img class="pizzas" src="assets/img/okpizza.png"
-                                        alt="pizza">Klik voor de details...</a></div>
-                            <div id="id01" class="modal">
-
-                                <form class="modal-content animate" action="order.php" method="post">
-
-                                    <img class="allePizzas" src="assets/img/pizza-1.png" alt="ok">
-
-                                </form>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv"><a onclick="document.getElementById('id01').style.display='block'"
-                                    style="" class="pizza_naam">Shoarma<img class="pizzas" src="assets/img/okpizza.png"
-                                        alt="pizza">Klik voor de details...</a></div>
-                            <div id="id01" class="modal">
-
-                                <form class="modal-content animate" action="order.php" method="post">
-
-                                    <img class="allePizzas" src="assets/img/pizza-1.png" alt="ok">
-
-                                </form>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv"><a onclick="document.getElementById('id01').style.display='block'"
-                                    style="" class="pizza_naam">Pulled Chicken<img class="pizzas"
-                                        src="assets/img/okpizza.png" alt="pizza">Klik voor de details...</a></div>
-                            <div id="id01" class="modal">
-
-                                <form class="modal-content animate" action="order.php" method="post">
-
-                                    <img class="allePizzas" src="assets/img/pizza-1.png" alt="ok">
-
-                                </form>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv"><a onclick="document.getElementById('id01').style.display='block'"
-                                    style="" class="pizza_naam">Hawaii<img class="pizzas" src="assets/img/okpizza.png"
-                                        alt="pizza">Klik voor de details...</a></div>
-                            <div id="id01" class="modal">
-
-                                <form class="modal-content animate" action="order.php" method="post">
-
-                                    <img class="allePizzas" src="assets/img/pizza-1.png" alt="ok">
-
-                                </form>
-                            </div>
-                        </li>
-                    </div>
-                    <div class="menuPizza">
-                        <li>
-                            <div class="menuDiv"><a onclick="document.getElementById('id01').style.display='block'"
-                                    style="" class="pizza_naam">BBQ Chicken<img class="pizzas"
-                                        src="assets/img/okpizza.png" alt="pizza">Klik voor de details...</a>
-                            </div>
-                            <div id="id01" class="modal">
-                                <form class="modal-content animate" action="order.php" method="post">
-                                    <img class="allePizzas" src="assets/img/pizza-1.png" alt="ok">
-                                </form>
-                            </div>
-                        </li>
-                    </div> -->
-                </ul>
                 <div class="padding"></div>
                 <div class="padding"></div>
                 <div class="padding"></div>
@@ -224,9 +50,6 @@
             </div>
         </div>
     </div>
-    <?php 
-            include('includes/footer.php');
-        ?>
 
     <script src="assets/js/jQuery.js"></script>
     <script src="assets/js/index.js"></script>

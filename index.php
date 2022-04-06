@@ -86,41 +86,8 @@
             </div>
             <div class="line"></div>
             <div class="content" id="account">
-                <h1>Maak een account</h1>
-                <button onclick="document.getElementById('id01').style.display='block'" style="">Klik hier om
-                    een account te maken of in te loggen...</button>
-
-                <div id="id01" class="modal">
-
-                    <form class="modal-content animate" action="/action_page.php" method="post">
-                        <div class="imgcontainer">
-                            <span onclick="document.getElementById('id01').style.display='none'" class="close"
-                                title="Close Modal">&times;</span>
-                            <img src="https://img.freepik.com/vrije-vector/vliegende-plak-van-pizza-cartoon-vectorillustratie-fast-food-concept-geisoleerde-vector-flat-cartoon-stijl_138676-1934.jpg?t=st=1645603661~exp=1645604261~hmac=bf191f473a11d80628d7b7c3441e81ee555960f54355eac0fe812887d2bbf8f4&w=740"
-                                alt="Avatar" class="avatar">
-                        </div>
-
-                        <div class="container">
-                            <label for="uname" id="usernamePassword"><b>Username</b></label>
-                            <input type="text" placeholder="Enter Username" name="uname" required>
-
-                            <label for="psw"><b>Password</b></label>
-                            <input type="password" placeholder="Enter Password" name="psw" required>
-
-                            <button type="submit" id="loginButton">Login</button>
-                            <label>
-                                <input type="checkbox" checked="checked" name="remember"> Remember me
-                            </label>
-                        </div>
-
-                        <div class="container" style="background-color:#f1f1f1">
-                            <button type="button" onclick="document.getElementById('id01').style.display='none'"
-                                class="cancelbtn">Cancel</button>
-                            <span class="psw">Forgot <a href="#">password?</a></span>
-                        </div>
-                    </form>
-                </div>
-            </div>
+                <h1>Uw Account</h1>
+                <button onclick="location.href='account/login.php'" style="">Klik hier om toegang te krijgen tot je eigen account...</button>
             <div class="line"></div>
             <div class="content" id="werk">
                 <h1>Facatures</h1>
@@ -128,11 +95,7 @@
                     openstaande facatures te zien...</button>
             </div>
             <div class="line"></div>
-            <div class="content" id="admins">
-                <h1>Admins</h1>
-                <h3></h3> <button onclick="location.href='../../user_login_session/index.php'" style="">klik hier om in te loggen als admin...</button>
-            </div>
-            <div class="line"></div>
+
             
         </div>
     </div>
