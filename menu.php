@@ -1,58 +1,156 @@
 <?php 
-	include('/account/functions.php');
-	include('connection.php');
+  include('./account/functions.php');
 ?>
-
+<?php include('./connection.php') ?>
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pizzaria</title>
-    <link rel="icon"
-        href="https://img.freepik.com/vrije-vector/vliegende-plak-van-pizza-cartoon-vectorillustratie-fast-food-concept-geisoleerde-vector-flat-cartoon-stijl_138676-1934.jpg?t=st=1645603661~exp=1645604261~hmac=bf191f473a11d80628d7b7c3441e81ee555960f54355eac0fe812887d2bbf8f4&w=740"
-        type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Leckerli+One&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+	<title>Menu</title>
+	<link rel="stylesheet" type="text/css" href="./account/style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Nunito:ital@1&display=swap" rel="stylesheet">
+	<style>
+    body { 
+      background-image: url('menu.png');
+			background-size: cover;
+    }
+		.header {
+			background: #1b1b1b;
+		}
+    h1{
+      font-size: 30px;
+      color: #fff;
+      text-transform: uppercase;
+      font-weight: 300;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+    table{
+      width:100%;
+      table-layout: fixed;
+    }
+    .tbl-header{
+      background-color: rgba(255,255,255,0.3);
+      width:40%;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+      border: 1px solid #B0C4DE;
+      border-radius: 0px 0px 10px 10px;
+    }
+    .tbl-content{
+      height:300px;
+      overflow-x:auto;
+      margin-top: 0px;
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+    th{
+      padding: 20px 15px;
+      text-align: left;
+      font-weight: 500;
+      font-size: 12px;
+      color: #fff;
+      text-transform: uppercase;
+    }
+    td{
+      padding: 15px;
+      text-align: left;
+      vertical-align:middle;
+      font-weight: 300;
+      font-size: 12px;
+      color: #fff;
+      border-bottom: solid 1px rgba(255,255,255,0.1);
+    }
+
+
+/* demo styles */
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,500,300,700);
+body{
+  font-family: 'Roboto', sans-serif;
+}
+
+
+/* follow me template */
+.made-with-love {
+  margin-top: 40px;
+  padding: 10px;
+  clear: left;
+  text-align: center;
+  font-size: 10px;
+  font-family: arial;
+  color: #fff;
+}
+.made-with-love i {
+  font-style: normal;
+  color: #F50057;
+  font-size: 14px;
+  position: relative;
+  top: 2px;
+}
+.made-with-love a {
+  color: #fff;
+  text-decoration: none;
+}
+.made-with-love a:hover {
+  text-decoration: underline;
+}
+
+
+/* for custom scrollbar for webkit browser*/
+
+::-webkit-scrollbar {
+    width: 6px;
+} 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+} 
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+}
+	</style>
 </head>
-
 <body>
-    <div class="sample-section-wrap">
-        <div class="sample-section">
-            <div class="content" id="menu">
-                <div class="line"></div>
+	<div class="header">
+		<h2>Menu</h2>
+	</div>
+    <section>
+  <div class="tbl-header">
+    <table cellpadding="0" cellspacing="0" border="0">
+        <thead>
+        <tr>
+            <th>Pizza's</th>
+            <th>Description</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+        <?php
+            $sql = "select * from menu";
+            $stmt = $conn->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->fetchAll();
 
-                <h1>Search Menu</h1>
-                <div class="line"></div>
-                <div class="padding"></div>
-
-                <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for pizzas..">
-                <h2>All Pizzas</h3>
-
-                <div class="input-group">
-
-			<?php
-				$result=$conn->prepare ("SELECT pizza FROM `menu` ORDER BY `menu`.`pizza` ASC");
-				$result->execute();
-				foreach($result as $row){
-				echo "<h3 value='".$row['pizza']."'".">".$row['pizza']."</option>";
-				}
-			?>			
-
-                <div class="padding"></div>
-                <div class="padding"></div>
-                <div class="padding"></div>
-                <div class="line"></div>
-            </div>
-        </div>
+            foreach($result as $orders) {
+                echo "<tr>";
+                echo "<td>".$orders['pizza']."</td>";
+                echo "<td>".$orders['description']."</td>";
+                echo "<td>$".$orders['price']."</td>";
+                echo "</tr>";
+            }
+        ?>
+        
+    </table>
     </div>
+</section>
 
-    <script src="assets/js/jQuery.js"></script>
-    <script src="assets/js/index.js"></script>
+    <script type="text/javascript">
+        // '.tbl-content' consumed little space for vertical scrollbar, scrollbar width depend on browser/os/platfrom. Here calculate the scollbar width .
+$(window).on("load resize ", function() {
+  var scrollWidth = $('.tbl-content').width() - $('.tbl-content table').width();
+  $('.tbl-header').css({'padding-right':scrollWidth});
+}).resize();
+    </script>
 </body>
-
 </html>

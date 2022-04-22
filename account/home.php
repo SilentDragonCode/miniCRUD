@@ -81,8 +81,11 @@ if (isset($_GET['logout'])) {
 						<i  style="color: #888;">(<?php echo ucfirst($_SESSION['user']['user_type']); ?>)</i> 
 						<br>
 						<a href="home.php?logout='1'" style="color: red;">logout</a>
-                       &nbsp; <a href="create_user.php"> + add user</a>
-                       &nbsp; <a href="create_menu.php"> + add menu item</a>
+                       &nbsp; <a href="create_user.php">- add user</a>
+                       &nbsp; <a href="create_menu.php">- add menu item</a>
+                       &nbsp; <a href="orders.php">- config orders</a>
+					   &nbsp; <a href="config-menu.php">- config menu</a>
+
 					</small>
 
 				<?php endif ?>

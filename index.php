@@ -20,6 +20,7 @@
         include('includes/header.php');
     ?>
     <div class="sample-section-wrap">
+        
         <div class="sample-section">
             <div class="line"></div>
             <div class="content" id="menu">
@@ -42,7 +43,7 @@
                 <h4>3. Betaal en laat het eten bezorgen
                     Betaal contant of online met iDEAL, Creditcard, PayPal, Bitcoin. Eet smakelijk!</h4>
 
-                <button onclick="document.getElementById('id01').style.display='block'" style="">Klik hier om je
+                <button onclick="location.href='account/login.php'" style="">Klik hier om je
                     bestelling te plaatsen...</button>
 
                 <div id="id01" class="modal">

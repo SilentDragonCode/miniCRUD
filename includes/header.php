@@ -74,6 +74,7 @@
         .naam-restaurant {
             font-size: 100px;
             opacity: 0.7;
+            
         }
 
         h1 {
