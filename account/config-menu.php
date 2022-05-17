@@ -162,7 +162,7 @@
           </div>
           <div class="input-group">
             <button type="submit" class="btn" name="pizza_del_btn">
-              + Delete pizza +
+              + Delete pizza
             </button>
           </div>
         </form>
