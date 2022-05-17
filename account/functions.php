@@ -18,8 +18,16 @@ if (isset($_POST['pizza_btn'])) {
 	menu();
 }
 
+if (isset($_POST['pizza_del_btn'])) {
+	menuDel();
+}
+
 if (isset($_POST['order_btn'])) {
 	order();
+}
+
+if (isset($_POST['pizza_update_btn'])) {
+	menuUpdate();
 }
 
 // REGISTER USER
@@ -155,6 +163,63 @@ function menu(){
 			header('location: index.php');
 	}
 }
+
+
+function menuDel(){
+	// call these variables with the global keyword to make them available in function
+	global $db, $errors, $pizza, $description, $price;
+
+	// receive all input values from the form. Call the e() function
+    // defined below to escape form values
+	$pizza       =  e($_POST['pizza']);
+
+	// form validation: ensure that the form is correctly filled
+	if (empty($pizza)) { 
+		array_push($errors, "Pizza is required"); 
+	}
+
+
+	// register user if there are no errors in the form
+	if (count($errors) == 0) {
+			$query = "DELETE FROM menu Where pizza = '$pizza'";
+			mysqli_query($db, $query);
+	}
+}
+
+function menuUpdate(){
+	// call these variables with the global keyword to make them available in function
+	global $db, $errors, $pizza, $description, $price;
+
+	// receive all input values from the form. Call the e() function
+    // defined below to escape form values
+	$pizza       =  e($_POST['pizza']);
+	$pizzanew       =  e($_POST['pizzanew']);
+	$description =  e($_POST['description']);
+	$price       =  e($_POST['price']);
+
+	// form validation: ensure that the form is correctly filled
+	if (empty($pizza)) { 
+		array_push($errors, "Pizza is required"); 
+	}
+	if (empty($pizzanew)) { 
+		array_push($errors, "New pizza name is required"); 
+	}
+	if (empty($description)) { 
+		array_push($errors, "Description is required"); 
+	}
+	if (empty($price)) { 
+		array_push($errors, "price is required"); 
+	}
+
+
+	// register user if there are no errors in the form
+	if (count($errors) == 0) {
+			$query = "UPDATE menu SET pizza = '$pizzanew', description = '$description', price = '$price'
+			WHERE pizza = '$pizza'";
+			mysqli_query($db, $query);
+	}
+}
+
 
 // ...
 function isAdmin()
