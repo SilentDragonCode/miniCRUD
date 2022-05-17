@@ -55,7 +55,7 @@
       text-transform: uppercase;
     }
     td{
-      padding: 15px;
+      padding: 20px 15px;
       text-align: left;
       vertical-align:middle;
       font-weight: 300;
